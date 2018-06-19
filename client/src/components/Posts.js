@@ -23,10 +23,6 @@ class Posts extends React.Component {
     this.setState({ showForm: !this.state.showForm })
   }
 
-  // handleChange = (e, data) => {
-  //   this.setState({ allPosts: data.value })
-  // }
-
   allPosts = () => {
     this.setState({ myPosts: false })
   }
@@ -34,13 +30,6 @@ class Posts extends React.Component {
   myPosts = () => {
     this.setState({ myPosts: true })
   }
-
-  // categoryOptions = () => {
-  //   const { categories } = this.props
-  //   return categories.map( (c,i) => { 
-  //     return { key: i, text: c, value: c }
-  //   })
-  // }
 
   posts = () => {
     const { posts, user } = this.props
@@ -79,7 +68,7 @@ class Posts extends React.Component {
   }
   
   render() {
-    const { showForm } = this.state
+    const { showForm, myPosts } = this.state
     return (
       <Container>
       <Divider />
@@ -87,7 +76,7 @@ class Posts extends React.Component {
           textAlign="center"
           as="h1"
           >
-            Let's have a look at all your lovely posts
+            The Loveliest of Posts
         </Header>
       <Button 
         fluid
@@ -98,7 +87,9 @@ class Posts extends React.Component {
           <PostForm closeForm={this.toggleForm} />
             :
             <div>
-            <Button.Group>
+            <br />
+            <Button.Group
+              fluid>
               <Button 
                 onClick={this.allPosts}
                 >
@@ -112,6 +103,7 @@ class Posts extends React.Component {
                   My Posts
               </Button>
             </Button.Group>
+           <h3 style={{textAlign: 'center'}}> { myPosts ? 'Here are only your posts' : "Everyone's posts!"} </h3>
       <Divider />
       <Card.Group itemsPerRow={4}>
         { this.posts() }
