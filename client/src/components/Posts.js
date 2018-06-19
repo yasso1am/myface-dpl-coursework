@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react'
 
 class Posts extends React.Component {
-  state = { showForm: false }
+  state = { myPosts: false, showForm: false }
 
   componentDidMount() {
     this.props.dispatch(getPosts())
@@ -24,8 +24,16 @@ class Posts extends React.Component {
   }
 
   // handleChange = (e, data) => {
-  //   this.setState({ category: data.value })
+  //   this.setState({ allPosts: data.value })
   // }
+
+  allPosts = () => {
+    this.setState({ myPosts: false })
+  }
+
+  myPosts = () => {
+    this.setState({ myPosts: true })
+  }
 
   // categoryOptions = () => {
   //   const { categories } = this.props
@@ -35,11 +43,11 @@ class Posts extends React.Component {
   // }
 
   posts = () => {
-    const { posts } = this.props
-    const { category } = this.state
+    const { posts, user } = this.props
+    const { myPosts } = this.state
     let visible = posts
-    if ( category)
-      visible = posts.filter (a => a.category === category )
+    if ( myPosts)
+      visible = posts.filter (p => p.user_id === user.id )
     return visible.map( post =>
       <Card key={post.id}>
       <Card.Content>
@@ -70,31 +78,6 @@ class Posts extends React.Component {
     )
   }
   
-  // { category && 
-  //             <Button
-  //               fluid
-  //               basic
-  //               onClick={() => this.setState({ category: '' })}
-  //             >
-  //               Clear Filters
-  //             </Button>
-  //         }
-
-  // clearFilter = (category) => { 
-  //   if (category){
-  //     return(
-  //       <Button
-  //           fluid
-  //           basic
-  //           onClick={() => this.setState({ category: '' })}
-  //         >
-  //           Clear Filters
-  //         </Button>
-  //     )
-  //   }
-  // }
-  
-  
   render() {
     const { showForm } = this.state
     return (
@@ -115,15 +98,20 @@ class Posts extends React.Component {
           <PostForm closeForm={this.toggleForm} />
             :
             <div>
-      {/* <Dropdown
-        placeholder="Filter by Topic"
-        fluid
-        selection
-        options={this.categoryOptions()}
-        value={category}
-        onChange={this.handleChange}
-      />
-      { this.clearFilter(category) } */}
+            <Button.Group>
+              <Button 
+                onClick={this.allPosts}
+                >
+                  All Posts
+              </Button>
+            <Button.Or />
+              <Button 
+                positive
+                onClick={this.myPosts}
+                >
+                  My Posts
+              </Button>
+            </Button.Group>
       <Divider />
       <Card.Group itemsPerRow={4}>
         { this.posts() }
@@ -136,10 +124,10 @@ class Posts extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { posts } = state
-  // const categories = [...new Set(posts.map( a => a.category )) ]
+  const { posts, user } = state
   return {
     posts,
+    user,
   }
 }
 

@@ -1,12 +1,9 @@
 class Api::PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   
-  def all
-    render json: Post.all
-  end
 
   def index
-    render json: Post.all.where(user_id: current_user.id)
+    render json: Post.all
   end
 
   def show
@@ -22,7 +19,7 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.create
+    post = current_user.posts.create(post_params)
     if post.save
       render json: post
     else

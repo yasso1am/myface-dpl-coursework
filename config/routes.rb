@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   
   namespace :api do
     resources :posts
-    get '/posts/all', to: 'posts#all'
     resources :users
   end
 
