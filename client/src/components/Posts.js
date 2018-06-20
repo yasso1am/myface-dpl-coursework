@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PostForm from './PostForm'
 import { getPosts, deletePost } from '../reducers/posts'
@@ -31,6 +31,18 @@ class Posts extends React.Component {
     this.setState({ myPosts: true })
   }
 
+  deletePost = (post) => {
+    if (post.user_id === this.props.user.id)
+      return( 
+        <Button
+          fluid
+          basic
+          onClick={() => this.props.dispatch(deletePost(post.id))}
+          >Delete Me
+        </Button>
+        )}
+
+
   posts = () => {
     const { posts, user } = this.props
     const { myPosts } = this.state
@@ -56,12 +68,7 @@ class Posts extends React.Component {
         <Link to={`/posts/${post.id}`}>
           View Post
         </Link>
-        <Button
-            fluid
-            basic
-            onClick={() => this.props.dispatch(deletePost(post.id))}
-            >Delete Me
-        </Button>
+        { this.deletePost(post) }
       </Card.Content>
     </Card>
     )

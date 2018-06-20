@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { 
   Header,
@@ -6,17 +7,28 @@ import {
   Divider,
 } from 'semantic-ui-react'
 
-const Home = () => (
+class Home extends Component {
+
+  render() {
+    return(
   <Container>
   <Divider />
   <Header
     textAlign="center"
     as="h1"
     >
-      Welcome to a <Link to ="/posts">Myspace</Link> webpage
+      Welcome {this.props.user.name } to a <Link to ="/posts">Myspace</Link> webpage
   </Header>
   <Divider />
   </Container>
-)
+    )
+  }
+}
 
-export default Home
+const mapStateToProps = (state) => {
+  const { user } = state
+  return {
+    user,
+  }
+}
+export default connect(mapStateToProps)(Home)
