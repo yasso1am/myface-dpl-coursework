@@ -10,13 +10,11 @@ import {
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import PostForm from './PostForm'
+import CommentForm from './CommentForm'
+import CommentView from './CommentView'
 
 class PostView extends React.Component {
   state = { showForm: false }
-
-  componentDidMount(){
-    debugger
-  }
 
   toggleForm = () => {
     this.setState({ showForm: !this.state.showForm })
@@ -67,6 +65,8 @@ class PostView extends React.Component {
               </Table>
             </div>
         }
+          <CommentView />
+          <CommentForm postId={this.props.match.params.id}/>
       </Container>
     )
   }
@@ -74,9 +74,14 @@ class PostView extends React.Component {
 
 const mapStateToProps = (state, props) => {
   const { id } = props.match.params
-  const { user } = state
+  const { user, comments } = state
   const post = state.posts.find( p => p.id === parseInt(id, 10) )
-  return { post, user }
+  return { 
+    post, 
+    user, 
+    comments 
+  }
 }
+
 
 export default connect(mapStateToProps)(PostView)

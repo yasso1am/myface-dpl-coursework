@@ -3,7 +3,6 @@ class Api::PostsController < ApplicationController
   
 
   def index
-    #render json: Post.all.order(created_at: :desc)
     render json: Post.post_with_author
   end
 

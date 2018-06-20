@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :posts
     resources :users
+    resources :comments
   end
 
   #Do not place any routes below this one
