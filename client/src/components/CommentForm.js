@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form } from 'semantic-ui-react'
-import { updateComment, addComment } from '../reducers/comment'
+import { updateComment, addComment } from '../reducers/comments'
 
 class CommentForm extends React.Component {
 

@@ -8,7 +8,7 @@ export const getComments = () => {
   return (dispatch) => {
     axios.get('/api/comments')
     .then ( res => {
-      dispatch ({ type: COMMENTS, posts: res.data, headers: res.headers })
+      dispatch ({ type: COMMENTS, comments: res.data, headers: res.headers })
     })
   }
 }
@@ -17,7 +17,7 @@ export const addComment = (comment) => {
   return (dispatch) => {
     axios.post('/api/comments', { comment })
     .then( res => {
-      dispatch({ type: ADD_COMMENT, post: res.data, headers: res.headers })
+      dispatch({ type: ADD_COMMENT, comment: res.data, headers: res.headers })
     })
   }
 }
@@ -26,7 +26,7 @@ export const updateComment = (comment) => {
   return (dispatch) => {
     axios.put(`/api/${comment.id}`, {comment})
     .then (res => {
-      dispatch({ type: UPDATE_COMMENT, post: res.data, headers: res.headers })
+      dispatch({ type: UPDATE_COMMENT, comment: res.data, headers: res.headers })
     })
   }
 }
