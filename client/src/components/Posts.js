@@ -66,6 +66,8 @@ class Posts extends React.Component {
         style={{textAlign: 'center'}}
         >
         <Link to={`/posts/${post.id}`}>
+        Author: {post.user_name}
+        <br />
           View Post
         </Link>
         { this.deletePost(post) }
