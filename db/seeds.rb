@@ -1,4 +1,4 @@
-200.times do
+25.times do
   name = Faker::Name.unique.name
   @new_user = User.create(
     name: name,
@@ -7,7 +7,7 @@
     password: 'password'
   )
 
-    10.times do
+    5.times do
       @new_user.posts.create(
     title: Faker::Hipster.words(2).join(' '),
     body: Faker::Lorem.paragraph(3)

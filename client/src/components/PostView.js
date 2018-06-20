@@ -14,9 +14,24 @@ import PostForm from './PostForm'
 class PostView extends React.Component {
   state = { showForm: false }
 
+  componentDidMount(){
+    debugger
+  }
+
   toggleForm = () => {
     this.setState({ showForm: !this.state.showForm })
   }
+
+  editForm = (post) => {
+    const { showForm } = this.state
+    if (post.user_id === this.props.user.id){
+       return ( <Button onClick={this.toggleForm}>
+          { showForm ? 'Cancel' : 'Edit' }
+        </Button>
+      )
+    }
+  }
+  
 
   render() {
     const { post = {} } = this.props
@@ -24,9 +39,7 @@ class PostView extends React.Component {
     return (
       <Container>
         <Link to="/posts">Go back to all Posts</Link>
-        <Button onClick={this.toggleForm}>
-          { showForm ? 'Cancel' : 'Edit' }
-        </Button>
+        { this.editForm(post) }
         { showForm ?
             <PostForm closeForm={this.toggleForm} {...post} />
             :
@@ -36,14 +49,15 @@ class PostView extends React.Component {
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell />
+                      {post.title}
                     <Table.HeaderCell />
                   </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                   <Table.Row>
-                    <Table.Cell>Title</Table.Cell>
-                    <Table.Cell>{post.title}</Table.Cell>
+                    <Table.Cell>Author</Table.Cell>
+                    <Table.Cell>{post.user_name}</Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>Body</Table.Cell>
@@ -60,8 +74,9 @@ class PostView extends React.Component {
 
 const mapStateToProps = (state, props) => {
   const { id } = props.match.params
+  const { user } = state
   const post = state.posts.find( p => p.id === parseInt(id, 10) )
-  return { post }
+  return { post, user }
 }
 
 export default connect(mapStateToProps)(PostView)
