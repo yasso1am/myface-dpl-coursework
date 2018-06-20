@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { getComments, deleteComment } from '../reducers/comments'
 import { 
   Button,
-  Card,
   Header,
   Container,
   Divider,
@@ -13,15 +12,14 @@ class CommentView extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getComments())
-    debugger
   }
 
   render() {
     const { comments } = this.props
     return comments.map( comment =>
       <Container>
-      <Divider />
-      {comment.body}
+        <Divider key={comment.id}/>
+          {comment.body}
       </Container>
     )
   }

@@ -46,9 +46,6 @@ class PostView extends React.Component {
               <Table definition>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell />
-                      {post.title}
-                    <Table.HeaderCell />
                   </Table.Row>
                 </Table.Header>
 
@@ -65,8 +62,15 @@ class PostView extends React.Component {
               </Table>
             </div>
         }
-          <CommentView />
+          <br />
+          <Divider />
           <CommentForm postId={this.props.match.params.id}/>
+          <Header
+            style={{textAlign: 'center'}}
+          >
+            Comments
+          </Header>
+          <CommentView />
       </Container>
     )
   }

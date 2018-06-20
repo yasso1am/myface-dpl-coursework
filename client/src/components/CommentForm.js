@@ -5,13 +5,11 @@ import { updateComment, addComment } from '../reducers/comments'
 
 class CommentForm extends React.Component {
 
-  initialState = {
+  state = {
     body: '',
     // user_id: this.props.user.id,
     post_id: this.props.postId,
   }
-
-  state = {...this.initialState}
 
   componentDidMount() {
     if (this.props.id)
@@ -29,7 +27,8 @@ class CommentForm extends React.Component {
     const { dispatch } = this.props
     const myFunc = this.props.id ? updateComment : addComment
     dispatch(myFunc(comment))
-    this.setState({...this.initialState})
+    this.setState({body: ''})
+    debugger
   }
 
   render() {
