@@ -10,6 +10,7 @@ import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import Posts from './Posts';
+import PostView from './PostView';
 
 class App extends Component {
   render() {
@@ -20,10 +21,10 @@ class App extends Component {
         <FetchUser>
           <Switch>
             <ProtectedRoute exact path='/' component={Home} />
-            <ProtectedRoute exact path="/posts" component={Posts} />
+            <ProtectedRoute exact path='/posts' component={Posts} />
+            <ProtectedRoute exact path='/posts/:id' component={PostView} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
-
 
             <Route component={NoMatch} />
           </Switch>

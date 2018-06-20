@@ -3,10 +3,11 @@ class Api::PostsController < ApplicationController
   
 
   def index
-    render json: Post.all
+    render json: Post.all.order(created_at: :desc)
   end
 
   def show
+    binding.pry
     render json: @post
   end
 
@@ -33,7 +34,7 @@ class Api::PostsController < ApplicationController
 
   private
     def set_post
-      @post = current_user.posts.find(params[:id])
+      @post = Post.find(params[:id])
     end
 
     def post_params
