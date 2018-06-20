@@ -32,7 +32,7 @@ class Posts extends React.Component {
   }
 
   deletePost = (post) => {
-    if (post.user_id === this.props.user.id)
+    if (post.user_name === this.props.user.name)
       return( 
         <Button
           fluid
