@@ -15,10 +15,6 @@ import {
 class Posts extends React.Component {
   state = { myPosts: false, showForm: false }
 
-  componentDidMount() {
-    this.props.dispatch(getPosts())
-  }
-
   toggleForm = () => {
     this.setState({ showForm: !this.state.showForm })
   }

@@ -70,7 +70,7 @@ class PostView extends React.Component {
           >
             Comments
           </Header>
-          <CommentView />
+          <CommentView postId={this.props.match.params.id}/>
       </Container>
     )
   }

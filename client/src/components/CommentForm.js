@@ -7,7 +7,6 @@ class CommentForm extends React.Component {
 
   state = {
     body: '',
-    // user_id: this.props.user.id,
     post_id: this.props.postId,
   }
 
@@ -17,6 +16,7 @@ class CommentForm extends React.Component {
   }
 
   handleChange = (e) => {
+    debugger
     const { name, value } = e.target
     this.setState({ [name]: value })
   }
@@ -28,16 +28,15 @@ class CommentForm extends React.Component {
     const myFunc = this.props.id ? updateComment : addComment
     dispatch(myFunc(comment))
     this.setState({body: ''})
-    debugger
   }
 
   render() {
-    const { body } = this.props
+    const { body } = this.state
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Input
           name="body"
-          defaultValue={body}
+          value={body}
           onChange={this.handleChange}
           label="Comment on this post"
         />
@@ -46,15 +45,5 @@ class CommentForm extends React.Component {
     )
   }
 }
-
-// const mapStateToProps = (state, props) => {
-//   const { id } = props.match.params
-//   const { user } = state
-//   const post = state.posts.find( p => p.id === parseInt(id, 10) )
-//   return { 
-//     post, 
-//     user, 
-//   }
-// }
 
 export default connect()(CommentForm)

@@ -16,11 +16,17 @@ class CommentView extends React.Component {
 
   render() {
     const { comments } = this.props
-    return comments.map( comment =>
+    let scopedComments = comments.filter (c => c.post_id === parseInt(this.props.postId) )
+    const listComments = scopedComments.map( comment =>
       <Container>
-        <Divider key={comment.id}/>
+        <span key={comment.id}>
           {comment.body}
+        </span>
+        <Divider />
       </Container>
+    )
+    return(
+      listComments
     )
   }
 }
@@ -33,4 +39,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-  export default connect (mapStateToProps)(CommentView)
+  export default connect(mapStateToProps)(CommentView)
