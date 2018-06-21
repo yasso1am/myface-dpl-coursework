@@ -18,8 +18,11 @@ class CommentView extends React.Component {
     const { comments } = this.props
     let scopedComments = comments.filter (c => c.post_id === parseInt(this.props.postId) )
     const listComments = scopedComments.map( comment =>
-      <Container>
-        <span key={comment.id}>
+      <Container key={comment.id}>
+      <Header>
+        {comment.user_name} says:
+      </Header>
+        <span>
           {comment.body}
         </span>
         <Divider />
