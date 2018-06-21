@@ -2,13 +2,14 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
 
+  # ACTIVE RECORD WAY
   # def self.post_with_author
   #   select("posts.id, title, body, user_id, name AS user_name")
   #   .joins("LEFT JOIN users ON posts.user_id = users.id")
   #   .order("posts.created_at DESC")
   # end
 
-
+  # SQL WAY
   def self.post_with_author
     Post.find_by_sql("
       SELECT p.id, p.title, p.body, p.user_id, u.name AS user_name
