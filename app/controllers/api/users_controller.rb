@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
   
   def index
+    render json: User.liked(current_user.friends)
   end
 
   def show

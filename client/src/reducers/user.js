@@ -27,7 +27,6 @@ const logout = () => {
 }
 
 
-
 export const registerUser = (user, history) => {
   return (dispatch) => {
     axios.post('/api/auth', user)

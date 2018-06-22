@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PostForm from './PostForm'
 import { deletePost } from '../reducers/posts'
+// import FriendPosts from './FriendPosts'
 import { addFriend } from '../reducers/user'
 import { 
   Button,
@@ -86,6 +87,9 @@ class Posts extends React.Component {
     return (
       <Container>
       <Divider />
+      <Link to={`/friends`}>
+        See your friend's post!
+      </Link>
         <Header
           textAlign="center"
           as="h1"
