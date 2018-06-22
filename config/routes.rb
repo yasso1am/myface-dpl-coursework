@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   
   namespace :api do
     resources :posts
-    resources :users
+    resources :users, except: :update
     resources :comments
+    put 'users/make_friend', to: 'users#make_friend'
   end
 
   #Do not place any routes below this one

@@ -9,4 +9,10 @@ class User < ActiveRecord::Base
 
   serialize :friends, Array
 
+  def self.befriended(ids)
+    binding.pry
+    ids = ids.empty? ? [0] : ids
+    User.where("id IN (?)", ids)
+  end
+
 end

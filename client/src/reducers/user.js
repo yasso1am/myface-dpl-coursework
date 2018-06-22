@@ -5,6 +5,18 @@ import { setHeaders } from './headers';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 const VALIDATE_TOKEN = 'VALIDATE_TOKEN';
+const ADD_FRIEND = 'ADD_FRIEND'
+
+
+export const addFriend = (friend) => {
+  return (dispatch) => {
+    axios.put('/api/users/make_friend', {friend})
+    .then ( res => {
+      dispatch ({ type: ADD_FRIEND, friend: res.data })
+      dispatch(setHeaders(res.headers));
+    })
+  }
+}
 
 const login = (user) => {
   return { type: LOGIN, user };
@@ -13,6 +25,8 @@ const login = (user) => {
 const logout = () => {
   return { type: LOGOUT };
 }
+
+
 
 export const registerUser = (user, history) => {
   return (dispatch) => {
@@ -98,6 +112,8 @@ export const validateToken = (callBack = f => f) => {
 
 export default (state = {}, action) => {
   switch (action.type) {
+    case ADD_FRIEND:
+      return action.friend
     case LOGIN:
     return action.user;
     case LOGOUT:

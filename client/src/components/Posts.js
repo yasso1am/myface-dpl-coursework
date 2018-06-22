@@ -2,13 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PostForm from './PostForm'
-import { getPosts, deletePost } from '../reducers/posts'
+import { deletePost } from '../reducers/posts'
+import { addFriend } from '../reducers/user'
 import { 
   Button,
   Card,
   Header,
   Container,
   Divider,
+  Image,
   // Dropdown,
 } from 'semantic-ui-react'
 
@@ -54,6 +56,13 @@ class Posts extends React.Component {
             textAlign: 'center',
             }}
         >
+      <Image centered src={post.user_image} />
+      <Button
+          fluid
+          basic
+          onClick={() => this.props.dispatch(addFriend(post.user_id))}
+          >Add me as a friend!
+        </Button>
           {post.title}
         </Card.Header>
       </Card.Content>

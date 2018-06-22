@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   # SQL WAY
   def self.post_with_author
     Post.find_by_sql("
-      SELECT p.id, p.title, p.body, p.user_id, u.name AS user_name
+      SELECT p.id, p.title, p.body, p.user_id, u.name AS user_name, u.image as user_image
       FROM posts AS p 
       LEFT JOIN users u ON p.user_id = u.id 
       ORDER BY p.created_at desc

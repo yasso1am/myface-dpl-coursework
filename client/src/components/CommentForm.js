@@ -25,8 +25,8 @@ class CommentForm extends React.Component {
     e.preventDefault()
     const comment = this.state
     const { dispatch } = this.props
-    const myFunc = this.props.id ? updateComment : addComment
-    dispatch(myFunc(comment))
+    const ternaryAnswer = this.props.id ? updateComment : addComment
+    dispatch(ternaryAnswer(comment))
     this.setState({body: ''})
   }
 

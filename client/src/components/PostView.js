@@ -43,6 +43,7 @@ class PostView extends React.Component {
             :
             <div>
               <Header as="h3" textAlign="center">{post.title}</Header>
+                  <Image centered src={post.user_image} />
               <Table definition>
                 <Table.Header>
                   <Table.Row>
